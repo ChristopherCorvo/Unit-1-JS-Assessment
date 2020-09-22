@@ -145,11 +145,20 @@ function getCargoCapacityTotal(character) {
   let totalCargoCapactiy=0;
 
   for (let i = 0; i < character.vehicles.length; i++) {
+    if(character.vehicles[i].cargo_capacity === null) {
+      totalCargoCapactiy = totalCargoCapactiy + 0;
+    }else {
     totalCargoCapactiy = totalCargoCapactiy + parseInt(character.vehicles[i].cargo_capacity);
-  }
+    }
+  } 
 
   for (let i = 0; i < character.starships.length; i++) {
+
+    if(character.starships[i].cargo_capacity === null){
+      totalCargoCapactiy = totalCargoCapactiy + 0;
+    } else {
     totalCargoCapactiy = totalCargoCapactiy + parseInt(character.starships[i].cargo_capacity); 
+    }
   }
 
   return totalCargoCapactiy;
