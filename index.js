@@ -5,6 +5,8 @@
 // 👇 COMPLETE YOUR WORK BELOW 👇
 */
 
+const { height } = require("./data/fixtures-bundle");
+
 /**
  * ### Challenge `getName`
  * Example ✅
@@ -18,9 +20,9 @@ function getName(character) {
   // ⭐️ Example Solution Provided For First Function ⭐️
   return character.name
 }
-
+/*--------------------------------------------------------------------*/
 /**
- * ### Challenge `getFilmCount`
+ * ### Challenge `getFilmCount` *************DONE**********
  * MVP Challenge 🤓
  * 
  * @instructions
@@ -29,24 +31,26 @@ function getName(character) {
  * Sample data expected output: 5
  */
 function getFilmCount(character) {
-  // TODO: Add your code inside the functions (others below).
-
+  return character.films.length;
 }
 
 /**
- * ### Challenge `getSecondStarshipName`
+ * ### Challenge `getSecondStarshipName` 
  * MVP Challenge 🤓
  * 
  * @instructions
- * Return second starship's name from `starships` property.
+ * Return second starship's name from `starships` property. ************** DONE *********
  * If length is 0. Return 'none'
 */
 function getSecondStarshipName(character) {
-  // TODO: Add your code here.
+  if(character.starships.length === 0){
+    return 'none'
+  } else {
+  return `${character.starships[1].name}`;
 }
-
+}
 /**
- * ### Challenge `getSummary`
+ * ### Challenge `getSummary` ***************************DONE********
  * MVP Challenge 🤓
  * 
  * @instructions
@@ -55,11 +59,11 @@ function getSecondStarshipName(character) {
  *    Result: `Luke Skywalker, 172cm, 77kg. Featured in 5 films.`
  */
 function getSummary(character) {
-  // TODO: Add your code here.
+  return `${character.name}, ${character.height}cm, ${character.mass}kg. Featured in ${character.films.length} films.`;
 }
 
 /**
- * ### Challenge `getVehiclesCostInCreditsSumTotal`
+ * ### Challenge `getVehiclesCostInCreditsSumTotal` ************* DONE **************
  * MVP Challenge 🤓
  * 
  * @instructions
@@ -67,11 +71,20 @@ function getSummary(character) {
  * Sample data expected output: 8000
 */
 function getVehiclesCostInCreditsSumTotal(character) {
-  // TODO: Add your code here.
+  // return character.vehicles[1].cost_in_credits; 
+
+  let totalCredits = 0;
+  for (let i = 0; i < character.vehicles.length; i++) {
+    totalCredits = totalCredits + character.vehicles[i].cost_in_credits;
+  }
+
+  return totalCredits;
+
+  
 }
 
 /**
- * ### Challenge `getStarshipPassengerAndCrewSumTotal`
+ * ### Challenge `getStarshipPassengerAndCrewSumTotal` ---------- DONE---------
  * MVP Challenge 🤓
  * 
  * @instructions
@@ -81,7 +94,17 @@ function getVehiclesCostInCreditsSumTotal(character) {
  * Sample data expected output: 27
 */
 function getStarshipPassengerAndCrewSumTotal(character) {
-  // TODO: Add your code here.
+  let totalCrew = 0;
+
+  for (let i = 0; i < character.starships.length; i++) {
+    totalCrew = totalCrew + character.starships[i].crew
+  }
+
+  for (let i = 0; i < character.starships.length; i++) {
+    totalCrew = totalCrew + character.starships[i].passengers;
+  }
+  return totalCrew;
+ 
 }
 
 /**
@@ -98,7 +121,13 @@ function getStarshipPassengerAndCrewSumTotal(character) {
  * Given film #7, expected error: `There are only 3 Star Wars movies. Flan fiction excluded.`
 */
 function getNthFilm(character, filmNumber) {
-  // TODO: Add your code here.
+  let filmIndex = filmNumber - 1;
+
+  if (filmIndex < 0 || filmIndex > 3){
+    return `There are only 3 Star Wars movies. Flan fiction excluded.`;
+  } else {
+  return character.films[filmIndex]
+  }
 }
 
 /**
@@ -111,8 +140,19 @@ function getNthFilm(character, filmNumber) {
  *
  * Sample data expected output: 80124
 */
+
 function getCargoCapacityTotal(character) {
-  // TODO: Add your code here.
+  let totalCargoCapactiy=0;
+
+  for (let i = 0; i < character.vehicles.length; i++) {
+    totalCargoCapactiy = totalCargoCapactiy + parseInt(character.vehicles[i].cargo_capacity);
+  }
+
+  for (let i = 0; i < character.starships.length; i++) {
+    totalCargoCapactiy = totalCargoCapactiy + parseInt(character.starships[i].cargo_capacity); 
+  }
+
+  return totalCargoCapactiy;
 }
 
 /**
@@ -127,7 +167,8 @@ function getCargoCapacityTotal(character) {
  * Sample data expected output: `X-wing`
 */
 function getFastestStarshipName(character) {
-  // TODO: Add your code here.
+  
+  return character.starships[1].max_atmosphering_speed;
 }
 
 /**
