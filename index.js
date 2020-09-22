@@ -176,8 +176,11 @@ function getCargoCapacityTotal(character) {
  * Sample data expected output: `X-wing`
 */
 function getFastestStarshipName(character) {
+  let speedArray = []
+  for(let i = 0; character.starships.length; i++){
+    speedArray.push(character.starships[i].max_atmosphering_speed)
+  }
   
-  return character.starships[1].max_atmosphering_speed;
 }
 
 /**
